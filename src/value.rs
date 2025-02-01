@@ -78,7 +78,8 @@ fn value_float(s: &str) -> IResult<Float> {
 pub enum Str<'s> {
     #[display(fmt = "\"{_0}\"")]
     Baked(&'s str),
-    #[display(fmt = "r{0}\"{content}\"{0}", "\"#\".repeat(*pounds)")]
+    //#[display(fmt = "r{0}\"{content}\"{0}", "\"#\".repeat(*pounds)")]
+    #[display(fmt = "\"{content}\"")]
     Raw { pounds: usize, content: &'s str },
 }
 fn value_str(s: &str) -> IResult<Str> {
