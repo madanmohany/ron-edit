@@ -1,0 +1,46 @@
+---
+source: src/lib.rs
+assertion_line: 396
+expression: ron
+---
+File(
+  extentions: [],
+  value: WsLead(
+    leading: Whitespace([]),
+    content: Tuple(Tuple(
+      ident: Some(WsFollowed(
+        content: "Hello",
+        following: Whitespace([]),
+      )),
+      fields: Separated(
+        values: [
+          WsWrapped(
+            leading: Whitespace([]),
+            content: List(List(Separated(
+              values: [
+                WsWrapped(
+                  leading: Whitespace([]),
+                  content: Float(Float("5.5")),
+                  following: Whitespace([]),
+                ),
+                WsWrapped(
+                  leading: Whitespace([]),
+                  content: Float(Float("6.5")),
+                  following: Whitespace([
+                    Space("\r\n"),
+                  ]),
+                ),
+              ],
+              trailing_comma: false,
+              trailing_ws: Whitespace([]),
+            ))),
+            following: Whitespace([]),
+          ),
+        ],
+        trailing_comma: false,
+        trailing_ws: Whitespace([]),
+      ),
+    )),
+  ),
+  trailing_ws: Whitespace([]),
+)

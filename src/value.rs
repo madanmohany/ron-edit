@@ -16,8 +16,8 @@ pub enum Value<'s> {
 }
 pub(crate) fn value(input: &str) -> IResult<Value> {
     alt((
-        map(value_int, Value::Int),
         map(value_float, Value::Float),
+        map(value_int, Value::Int),
         map(value_str, Value::Str),
         map(value_char, Value::Char),
         map(value_list, Value::List),
@@ -63,10 +63,8 @@ fn value_float(s: &str) -> IResult<Float> {
                 tag("inf"),
                 tag("NaN"),
                 recognize(tuple((
-                    alt((
-                        recognize(tuple((digit1, opt(tuple((char('.'), digit0)))))),
-                        recognize(tuple((char('.'), digit1))),
-                    )),
+                    opt(digit1),
+                    tuple((char('.'), digit1)),
                     opt(tuple((alt((char('e'), char('E'))), sign, digit1))),
                 ))),
             )),

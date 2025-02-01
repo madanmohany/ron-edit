@@ -397,4 +397,34 @@ mod test {
             })
         }
     }
+
+    fn parse_float1(input: &str) -> IResult<f64> {
+        // dbg!(input);
+        map_res(
+            recognize(tuple((
+                opt(char('-')),
+                digit1,
+                opt(tuple((char('.'), digit1))), // Optional fractional part
+                opt(tuple((
+                    alt((char('e'), char('E'))),
+                    opt(alt((char('+'), char('-')))),
+                    digit1,
+                ))),
+            ))),
+            |s: &str| s.parse(), // Directly parse the recognized string
+        )(input)
+    }
+    #[test]
+    fn test_float() {
+        let input = "5.5)";
+        match parse_float1(input) {
+            Ok((remaining, parsed)) => {
+                println!("Parsed: {}", parsed);
+                println!("Remaining: \"{}\"", remaining);
+            }
+            Err(e) => println!("Error: {:?}", e),
+        }
+
+        // ... (Other test cases)
+    }
 }
